@@ -1,94 +1,59 @@
-# ZodiacPool Binding
+# Zodiac Pool Binding
 
-_Give some details about what this binding is meant for - a protocol, system, specific device._
+The `zodiacpool` binding integrates Zodiac Pool devices into OpenHAB, allowing users to monitor and control various pool parameters such as temperature, pH level, status, and filter pump state.
 
-_If possible, provide some resources like pictures (only PNG is supported currently), a video, etc. to give an impression of what can be done with this binding._
-_You can place such resources into a `doc` folder next to this README.md._
+## Overview
 
-_Put each sentence in a separate line to improve readability of diffs._
+The Zodiac Pool binding allows you to connect your Zodiac Pool Controller to OpenHAB, enabling real-time monitoring and control of your pool environment from the OpenHAB interface. This includes viewing the pool’s temperature, pH level, operational status, and filter pump state.
 
-## Supported Things
+## Supported Devices
 
-_Please describe the different supported things / devices including their ThingTypeUID within this section._
-_Which different types are supported, which models were tested etc.?_
-_Note that it is planned to generate some part of this based on the XML files within ```src/main/resources/OH-INF/thing``` of your binding._
-
-- `bridge`: Short description of the Bridge, if any
-- `sample`: Short description of the Thing with the ThingTypeUID `sample`
-
-## Discovery
-
-_Describe the available auto-discovery features here._
-_Mention for what it works and what needs to be kept in mind when using it._
-
-## Binding Configuration
-
-_If your binding requires or supports general configuration settings, please create a folder ```cfg``` and place the configuration file ```<bindingId>.cfg``` inside it._
-_In this section, you should link to this file and provide some information about the options._
-_The file could e.g. look like:_
-
-```
-# Configuration for the ZodiacPool Binding
-#
-# Default secret key for the pairing of the ZodiacPool Thing.
-# It has to be between 10-40 (alphanumeric) characters.
-# This may be changed by the user for security reasons.
-secret=openHABSecret
-```
-
-_Note that it is planned to generate some part of this based on the information that is available within ```src/main/resources/OH-INF/binding``` of your binding._
-
-_If your binding does not offer any generic configurations, you can remove this section completely._
+- Zodiac Pool Controller
 
 ## Thing Configuration
 
-_Describe what is needed to manually configure a thing, either through the UI or via a thing-file._
-_This should be mainly about its mandatory and optional configuration parameters._
+### Zodiac Pool Controller Thing
 
-_Note that it is planned to generate some part of this based on the XML files within ```src/main/resources/OH-INF/thing``` of your binding._
+To configure the Zodiac Pool Controller, you will need the following information:
 
-### `sample` Thing Configuration
-
-| Name            | Type    | Description                           | Default | Required | Advanced |
-|-----------------|---------|---------------------------------------|---------|----------|----------|
-| hostname        | text    | Hostname or IP address of the device  | N/A     | yes      | no       |
-| password        | text    | Password to access the device         | N/A     | yes      | no       |
-| refreshInterval | integer | Interval the device is polled in sec. | 600     | no       | yes      |
+- **Device ID**: The unique identifier of your Zodiac Pool device.
+- **Email**: The email address associated with your Zodiac Pool account.
+- **Password**: The password for your Zodiac Pool account.
+- **API Key**: The API key provided by Zodiac for accessing the service.
 
 ## Channels
 
-_Here you should provide information about available channel types, what their meaning is and how they can be used._
+The following channels are available for the Zodiac Pool Controller thing:
 
-_Note that it is planned to generate some part of this based on the XML files within ```src/main/resources/OH-INF/thing``` of your binding._
+| Channel ID       | Label             | Description                                      | Type      |
+|------------------|-------------------|--------------------------------------------------|-----------|
+| `poolTemperature`| Pool Temperature  | The current temperature of the pool water.       | Number    |
+| `poolPH`         | Pool pH Level     | The current pH level of the pool water.          | Number    |
+| `poolStatus`     | Pool Status       | The current operational status of the pool.      | String    |
+| `statusTimestamp`| Status Timestamp  | The last timestamp when the status was updated.  | DateTime  |
+| `filterPump`     | Filter Pump State | Indicates if the filter pump is active or idle.  | String    |
 
-| Channel | Type   | Read/Write | Description                 |
-|---------|--------|------------|-----------------------------|
-| control | Switch | RW         | This is the control channel |
+## Thing Configuration Parameters
 
-## Full Example
+The following configuration parameters are required to set up the Zodiac Pool Controller:
 
-_Provide a full usage example based on textual configuration files._
-_*.things, *.items examples are mandatory as textual configuration is well used by many users._
-_*.sitemap examples are optional._
+| Parameter        | Required | Description                                                    |
+|------------------|----------|----------------------------------------------------------------|
+| `deviceId`       | Yes      | The unique identifier of your Zodiac Pool device.             |
+| `email`          | Yes      | The email associated with your Zodiac Pool account.           |
+| `password`       | Yes      | The password for your Zodiac Pool account.                    |
+| `apiKey`         | Yes      | The API key provided by Zodiac for authentication.            |
+| `refreshInterval`| No       | Interval in seconds for refreshing data (default is 60 sec).  |
 
-### Thing Configuration
+## Example Thing Configuration
+
+Here is an example configuration for the Zodiac Pool Controller thing:
 
 ```java
-Example thing configuration goes here.
-```
-### Item Configuration
-
-```java
-Example item configuration goes here.
-```
-
-### Sitemap Configuration
-
-```perl
-Optional Sitemap configuration goes here.
-Remove this section, if not needed.
-```
-
-## Any custom content here!
-
-_Feel free to add additional sections for whatever you think should also be mentioned about your binding!_
+Thing zodiacpool:zodiacpoolcontroller:myPool "My Pool" @ "Home" [ 
+    deviceId="YOUR_DEVICE_ID",
+    email="YOUR_EMAIL",
+    password="YOUR_PASSWORD",
+    apiKey="YOUR_API_KEY",
+    refreshInterval=60
+]

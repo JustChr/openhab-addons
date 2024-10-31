@@ -21,18 +21,58 @@
 				<label>Password</label>
 				<description>Password for the Zodiac API</description>
 			</parameter>
-			<parameter name="apiKey" type="text" required="true" default="EOOEMOW4YR6QNB11">
+			<parameter name="apiKey" type="text" required="false" default="EOOEMOW4YR6QNB11">
 				<label>API Key</label>
-				<description>API Key for accessing the Zodiac pool system</description>
+				<description>API Key for accessing the Zodiac pool system, default should be fine</description>
+			</parameter>
+			<parameter name="refreshInterval" type="integer" required="false" default="300">
+				<label>Refresh Interval</label>
+				<description>Refresh Interval in Seconds</description>
 			</parameter>
 		</config-description>
 
 		<channels>
-			<channel id="poolTemperature" typeId="temperature"/>
-			<channel id="poolPH" typeId="ph"/>
-			<channel id="poolStatus" typeId="status"/>
-			<channel id="statusTimestamp" typeId="timestamp"/>
-			<channel id="filterPump" typeId="pump"/>
+			<channel id="poolTemperature" typeId="poolTemperature"/>
+			<channel id="poolPH" typeId="poolPH"/>
+			<channel id="poolStatus" typeId="poolStatus"/>
+			<channel id="statusTimestamp" typeId="statusTimestamp"/>
+			<channel id="filterPump" typeId="filterPump"/>
 		</channels>
 	</thing-type>
+
+	<!-- Channel Type Definitions -->
+	<channel-type id="poolTemperature">
+		<item-type>Number:Temperature</item-type>
+		<label>Pool Temperature</label>
+		<description>The current temperature of the pool in Celsius</description>
+		<state readOnly="true" pattern="%.1f °C"/>
+	</channel-type>
+
+	<channel-type id="poolPH">
+		<item-type>Number</item-type>
+		<label>Pool PH Level</label>
+		<description>The current pH level of the pool water</description>
+		<state readOnly="true" pattern="%.1f"/>
+	</channel-type>
+
+	<channel-type id="poolStatus">
+		<item-type>String</item-type>
+		<label>Pool Status</label>
+		<description>The operational status of the pool system</description>
+		<state readOnly="true"/>
+	</channel-type>
+
+	<channel-type id="statusTimestamp">
+		<item-type>DateTime</item-type>
+		<label>Status Timestamp</label>
+		<description>The timestamp of the last status update</description>
+		<state readOnly="true"/>
+	</channel-type>
+
+	<channel-type id="filterPump">
+		<item-type>String</item-type>
+		<label>Filter Pump State</label>
+		<description>The current state of the filter pump</description>
+		<state readOnly="true"/>
+	</channel-type>
 </thing:thing-descriptions>
