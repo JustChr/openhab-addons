@@ -22,15 +22,9 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
 @NonNullByDefault
 public class ZodiacPoolConfiguration {
 
-    @Parameter(name = "deviceId")
-    public String deviceId;
-
-    @Parameter(name = "email")
-    public String email;
-
-    @Parameter(name = "password")
-    public String password;
-
-    @Parameter(name = "apiKey", defaultValue = "EOOEMOW4YR6QNB11")
-    public String apiKey;
+    public String deviceId = "";
+    public String email = "";
+    public String password = "";
+    public String apiKey = "EOOEMOW4YR6QNB11";
+    public int refreshInterval = 300;
 }

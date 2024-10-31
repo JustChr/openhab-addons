@@ -26,7 +26,7 @@ public class ZodiacPoolBindingConstants {
 
     private static final String BINDING_ID = "zodiacpool";
 
-    public static final String THING_TYPE_ZODIACPOOL = "zodiacpool";
+    public static final ThingTypeUID THING_TYPE_ZODIACPOOL = new ThingTypeUID(BINDING_ID, "zodiacpool");
 
     // Channel IDs
     public static final String CHANNEL_POOL_TEMPERATURE = "poolTemperature";

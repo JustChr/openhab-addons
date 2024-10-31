@@ -12,7 +12,7 @@
  */
 package org.openhab.binding.zodiacpool.internal;
 
-import static org.openhab.binding.zodiacpool.internal.ZodiacPoolBindingConstants.*;
+import static org.openhab.binding.zodiacpool.internal.ZodiacPoolBindingConstants.THING_TYPE_ZODIACPOOL;
 
 import java.util.Set;
 
@@ -35,7 +35,7 @@ import org.osgi.service.component.annotations.Component;
 @Component(configurationPid = "binding.zodiacpool", service = ThingHandlerFactory.class)
 public class ZodiacPoolHandlerFactory extends BaseThingHandlerFactory {
 
-    private static final Set<ThingTypeUID> SUPPORTED_THING_TYPES_UIDS = Set.of(THING_TYPE_SAMPLE);
+    private static final Set<ThingTypeUID> SUPPORTED_THING_TYPES_UIDS = Set.of(THING_TYPE_ZODIACPOOL);
 
     @Override
     public boolean supportsThingType(ThingTypeUID thingTypeUID) {
@@ -46,7 +46,7 @@ public class ZodiacPoolHandlerFactory extends BaseThingHandlerFactory {
     protected @Nullable ThingHandler createHandler(Thing thing) {
         ThingTypeUID thingTypeUID = thing.getThingTypeUID();
 
-        if (THING_TYPE_SAMPLE.equals(thingTypeUID)) {
+        if (THING_TYPE_ZODIACPOOL.equals(thingTypeUID)) {
             return new ZodiacPoolHandler(thing);
         }
 
