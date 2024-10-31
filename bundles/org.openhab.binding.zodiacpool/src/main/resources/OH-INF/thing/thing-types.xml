@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="zodiacpool"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:thing="https://openhab.org/schemas/thing-description/v1.0.0"
+	xsi:schemaLocation="https://openhab.org/schemas/thing-description/v1.0.0 https://openhab.org/schemas/thing-description-1.0.0.xsd">
+
+	<thing-type id="zodiacpool" listed="true">
+		<label>Zodiac Pool Controller</label>
+		<description>Controls the Zodiac pool system</description>
+
+		<config-description>
+			<parameter name="deviceId" type="text" required="true">
+				<label>Device ID</label>
+				<description>The unique device ID of the Zodiac pool system</description>
+			</parameter>
+			<parameter name="email" type="text" required="true">
+				<label>Email</label>
+				<description>Email address used to authenticate with Zodiac API</description>
+			</parameter>
+			<parameter name="password" type="password" required="true">
+				<label>Password</label>
+				<description>Password for the Zodiac API</description>
+			</parameter>
+			<parameter name="apiKey" type="text" required="true" default="EOOEMOW4YR6QNB11">
+				<label>API Key</label>
+				<description>API Key for accessing the Zodiac pool system</description>
+			</parameter>
+		</config-description>
+
+		<channels>
+			<channel id="poolTemperature" typeId="temperature"/>
+			<channel id="poolPH" typeId="ph"/>
+			<channel id="poolStatus" typeId="status"/>
+			<channel id="statusTimestamp" typeId="timestamp"/>
+			<channel id="filterPump" typeId="pump"/>
+		</channels>
+	</thing-type>
+</thing:thing-descriptions>
